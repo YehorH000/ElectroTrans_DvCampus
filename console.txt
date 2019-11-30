@@ -1,0 +1,145 @@
+    CREATE TABLE employes (
+        employe_name varchar(40) NOT NULL COMMENT 'employe Name',
+        employe_surname varchar(40) NOT NULL COMMENT 'employe Surname',
+        position_name varchar(127) NOT NULL COMMENT 'employe position',
+        dob DATE DEFAULT NULL COMMENT 'Date of Birth'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='employes';
+
+    CREATE TABLE position (
+        position_name varchar(127) NOT NULL COMMENT 'Position Name'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Position';
+
+
+
+
+    CREATE TABLE salary (
+        position_name varchar(127) NOT NULL COMMENT 'POSITION',
+        year int(10) NOT NULL COMMENT 'Year`s salary',
+        month int(10) NOT NULL COMMENT 'Month`s salary',
+        day int(10) NOT NULL COMMENT 'Day`s salary'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Salary';
+
+    CREATE TABLE transport (
+        transport_name varchar(127) NOT NULL COMMENT 'Transport Name',
+        nomer int(10) NOT NULL COMMENT 'Nomer of transport'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Transport';
+
+    CREATE TABLE trans_for_employe (
+        employe_id INT(10) UNSIGNED NOT NULL,
+        transport_id INT(10) UNSIGNED NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Purchased Item Tags';
+
+
+
+#add column
+
+    ALTER TABLE employes
+        ADD COLUMN employe_id INT(10) UNSIGNED NOT NULL
+            AUTO_INCREMENT PRIMARY KEY COMMENT 'Employe ID' FIRST;
+
+    ALTER TABLE position
+        ADD COLUMN position_id INT(10) UNSIGNED NOT NULL
+            AUTO_INCREMENT PRIMARY KEY COMMENT 'Position ID' FIRST;
+
+    ALTER TABLE salary
+        ADD COLUMN salary_id INT(10) UNSIGNED NOT NULL
+            AUTO_INCREMENT PRIMARY KEY COMMENT 'Salary ID' FIRST;
+
+    ALTER TABLE transport
+        ADD COLUMN transport_id INT(10) UNSIGNED NOT NULL
+            AUTO_INCREMENT PRIMARY KEY COMMENT 'Transport ID' FIRST;
+
+    ALTER TABLE employes
+        ADD COLUMN salary INT(10) NOT NULL COMMENT 'Employe ID';
+
+#add CONSTRAINT
+
+    ALTER TABLE employes
+        ADD CONSTRAINT PURCHASED_ITEM_POSITION_NAME_POSITION_POSITION_NAME
+            FOREIGN KEY (position_name) REFERENCES position (position_name)
+                ON DELETE CASCADE;
+
+    ALTER TABLE salary
+        ADD CONSTRAINT PURCHASED_ITEM_POSITION_NAME_POSITION_POSITION_NAME
+            FOREIGN KEY (position_name) REFERENCES position (position_name)
+                ON DELETE CASCADE;
+
+    ALTER TABLE position
+        ADD CONSTRAINT PURCHASED_ITEM_POSITION_NAME_POSITION_POSITION_NAME
+            FOREIGN KEY (employe_id) REFERENCES employes (employe_id)
+                ON DELETE CASCADE;
+
+    ALTER TABLE salary
+        ADD CONSTRAINT PURCHASED_ITEM_SALARY_IDi_SALARY_SALARY_ID
+            FOREIGN KEY (employe_id) REFERENCES employes (employe_id)
+                ON DELETE CASCADE;
+
+    ALTER TABLE salary
+        ADD CONSTRAINT PURCHASED_ITEM_SALARY_NAME_SALARY_SALARY_NAME
+            FOREIGN KEY (position_name) REFERENCES position (position_name)
+                ON DELETE CASCADE;
+
+    ALTER TABLE trans_for_employe
+        ADD CONSTRAINT PURCHASED_ITEM_TAG_PIID_PURCHASED_ITEM_PURCHASED_ITEM_ID
+            FOREIGN KEY (employe_id) REFERENCES employes (employe_id)
+                ON DELETE CASCADE,
+        ADD CONSTRAINT PURCHASED_ITEM_TAG_TAG_ID_TAG_TAG_ID
+            FOREIGN KEY (transport_id) REFERENCES transport (transport_id)
+                ON DELETE CASCADE;
+
+
+#add table to ...
+
+    ALTER TABLE position
+        ADD COLUMN employe_id INT(10) UNSIGNED NOT NULL
+            COMMENT 'Empoye ID' AFTER position_id;
+
+    ALTER TABLE employes
+        ADD COLUMN date_of_start INT(10) UNSIGNED NOT NULL
+            COMMENT 'Date of start work' AFTER employe_id;
+
+    ALTER TABLE salary
+        ADD COLUMN employe_id INT(10) UNSIGNED NOT NULL
+            COMMENT 'Employe ID' AFTER salary_id;
+
+        ALTER TABLE trans_for_employe
+            ADD COLUMN data DATE  NOT NULL
+                COMMENT 'Data' AFTER transport_id,
+            ADD COLUMN deily_earnings INT(10)  NOT NULL
+                COMMENT 'Deily Earnings' AFTER transport_id;
+
+#delete
+
+    #ALTER TABLE <table> DROP COLUMN <column>;
+    #drop table <table name>;
+
+#data
+
+    INSERT INTO employes (employe_name,employe_surname,position_name,dob,date_of_start) VALUES
+        ('Ivan','Ivanov','driver','1980-10-10','2000-5-18'),
+        ('Peter','Petrov','driver','1980-10-10','2000-2-18'),
+        ('Nicholas','Peters','driver','1980-10-10','2000-9-8'),
+        ('Basil','Dixon','konductor','1980-10-10','2000-3-18'),
+        ('Damian','McLaughlin','konductor','1980-10-10','2000-11-18'),
+        ('Neal','Wilkins','konductor','1980-10-10','2000-6-18'),
+        ('Mark','Byrd','bookkeeper','1980-10-10','2000-11-28'),
+        ('Ethan','Atkins','bookkeeper','1980-10-10','2000-10-18'),
+        ('Thomas','Ivanov','cleaner','1980-10-10','2000-9-18'),
+        ('Peter','Harrison','director','1980-10-10','2000-1-18');
+
+    INSERT INTO transport (transport_name,nomer) VALUES
+        ('bus','1111'),
+        ('bus','2222'),
+        ('bus','3333');
+
+    INSERT INTO position (position_name) VALUES
+    ('driver'),
+    ('konductor'),
+    ('bookkeeper'),
+    ('cleaner'),
+    ('director');
+
+    INSERT INTO salary (employe_id,year,month,day) VALUES
+    ('bus','1111'),
+    ('bus','2222'),
+    ('bus','3333');

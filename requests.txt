@@ -1,0 +1,15 @@
+1 -  SELECT * FROM user WHERE employe_surname LIKE "Ivanov";
+2 -
+	SELECT u.employe_name,
+       AVG(sal.<salary>) AS average_spending
+FROM employes AS u
+         INNER JOIN salary AS sal ON u.employe_id = sal.employe_id
+GROUP BY sal.employe_id;
+
+3 -
+SELECT u.employe_name,
+       AVG(sal.<position>) AS average_spending
+       SUM(sal.<salary>) AS total_spendings,
+FROM position AS pos
+         INNER JOIN salary AS sal ON pos.employe_id = sal.employe_id
+GROUP BY sal.employe_id;
