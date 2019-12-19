@@ -1,15 +1,35 @@
 1 -  SELECT * FROM user WHERE employe_surname LIKE "Ivanov";
-2 -
-	SELECT e.employe_name,
+
+2 - SELECT e.employe_name,
            AVG(sal.deily_earnings) AS average_spending
     FROM employes AS e
              INNER JOIN salary AS sal ON e.	 = sal.employe_id
-    GROUP BY sal.employe_id;[p
+    GROUP BY sal.employe_id;
 
-3 -
-SELECT u.employe_name,
-       AVG(sal.<position>) AS average_spending
-       SUM(sal.<salary>) AS total_spendings,
-FROM position AS pos
-         INNER JOIN salary AS sal ON pos.employe_id = sal.employe_id
-GROUP BY sal.employe_id;
+3 -    SELECT e.position_id,
+            MAX(e.salary) AS max_salary,
+            AVG(e.salary) AS average_spending
+    FROM employes AS e
+             INNER JOIN position AS pos ON e.position_id	 = pos.position_id
+    GROUP BY pos.position_id;
+
+
+4 -    SELECT e.employe_name,
+            COUNT(tr_fr.date),
+            SUM(tr_fr.deily_earnings)
+    FROM employes AS e
+             INNER JOIN trans_for_employe AS tr_fr ON e.employe_id	 = tr_fr.employe_id
+    GROUP BY tr_fr.employe_id;
+
+
+5 -    SELECT tr.transport_id,
+            COUNT(tr_fr.date),
+            SUM(tr_fr.deily_earnings),
+            AVG(tr_fr.deily_earnings)
+    FROM transport AS tr
+             INNER JOIN trans_for_employe AS tr_fr ON tr.transport_id	 = tr_fr.transport_id
+    GROUP BY tr_fr.transport_id;
+
+6 - SELECT e.employe_name , e.dob
+	FROM employes AS e
+	WHERE MONTH(e.dob) = 04
