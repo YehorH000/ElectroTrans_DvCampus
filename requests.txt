@@ -9,7 +9,7 @@
 3 -    SELECT e.position_id,
             MAX(e.salary) AS max_salary,
             AVG(e.salary) AS average_spending
-    FROM employes AS e
+    FROM employes AS e`
              INNER JOIN position AS pos ON e.position_id	 = pos.position_id
     GROUP BY pos.position_id;
 
@@ -33,3 +33,8 @@
 6 - SELECT e.employe_name , e.dob
 	FROM employes AS e
 	WHERE MONTH(e.dob) = 04
+
+7 - SELECT e.employe_surname,
+        SUM((DATEDIFF(CURRENT_DATE, e.date_of_start)) / 365)
+    	FROM employes AS e
+    	GROUP BY e.employe_surname;
