@@ -42,7 +42,7 @@ CREATE TABLE `employes` (
 
 LOCK TABLES `employes` WRITE;
 /*!40000 ALTER TABLE `employes` DISABLE KEYS */;
-INSERT INTO `employes` VALUES (1,1,'2000-05-18','Ivan','Ivanov','1980-10-10',1000),(2,1,'2000-02-18','Peter','Petrov','1980-10-10',1000),(3,1,'2000-09-08','Nicholas','Peters','1980-10-10',1000),(4,2,'2000-11-18','Damian','McLaughlin','1980-10-10',2000),(5,2,'2000-03-18','Basil','Dixon','1980-10-10',1000),(6,2,'2000-06-18','Neal','Wilkins','1980-10-10',2040),(7,3,'2000-11-28','Mark','Byrd','1980-10-10',4562),(8,4,'2000-10-18','Ethan','Atkins','1980-10-10',2558),(9,3,'2000-09-18','Thomas','Ivanov','1980-10-10',4288),(10,5,'2000-01-18','Peter','Harrison','1980-10-10',45245);
+INSERT INTO `employes` VALUES (1,1,'2000-04-18','Ivan','Ivanov','1980-04-04',1000),(2,1,'2000-02-18','Peter','Petrov','1980-10-10',1000),(3,1,'2000-09-08','Nicholas','Peters','1980-10-10',1000),(4,2,'2000-11-18','Damian','McLaughlin','1980-10-10',2000),(5,2,'2000-03-18','Basil','Dixon','1980-10-10',1000),(6,2,'2000-06-18','Neal','Wilkins','1980-10-10',2040),(7,3,'2000-11-28','Mark','Byrd','1980-10-10',4562),(8,4,'2000-10-18','Ethan','Atkins','1980-10-10',2558),(9,3,'2000-09-18','Thomas','Ivanov','1980-10-10',4288),(10,5,'2000-01-18','Peter','Harrison','1980-10-10',45245);
 /*!40000 ALTER TABLE `employes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,4 +163,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-13 17:07:47
+-- Dump completed on 2020-01-13 21:36:51
